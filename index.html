@@ -83,6 +83,15 @@
                 </td>
             </tr>
             <tr>
+                <td class="drawTime" colspan="4">
+                    <button class="curved-left"
+                        onClick="$('#drawTime').text((drawTime > 1) ? --drawTime : drawTime);">&#65293;</button>
+                    Target Time:&nbsp;
+                    <span id="drawTime">10</span>&nbsp;Seconds
+                    <button class="curved-right" onClick="$('#drawTime').text(++drawTime);">&#65291;</button>
+                </td>
+            </tr>
+            <tr>
                 <td class="iterations" colspan="4">
                     <button class="curved-left"
                         onClick="$('#iterations').text((iterations > 1) ? --iterations : iterations);">&#65293;</button>
