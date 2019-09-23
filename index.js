@@ -4,6 +4,7 @@
 let data = [];
 // Initialize amount of iterations to do
 let iterations = 1;
+let drawTime = 10;
 let coords;
 let presets = {
     // Name: [Axiom, Angle, [[Percent, Input, Output]]]
@@ -291,7 +292,7 @@ function draw() {
     translate(((width - xSpan) / 2) - (coords[0][0] * ratio), -((height - ySpan) / 2) - (coords[0][3] * ratio));
     noFill();
     colorMode(HSL, 360);
-    for (let i = 0; i < min(5, max(1, coords[1].length / 900)); i++) {
+    for (let i = 0; i < max(1, coords[1].length / (drawTime * 30)); i++) {
         // for (let points of coords[1]) {
             color += 360 / coords[1].length;
             stroke(color, 200, 200);
