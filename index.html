@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L-Systems</title>
+    <link href="https://fonts.googleapis.com/css?family=Atomic+Age&display=swap" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="index.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <table id="sidebar">
+        <colspan>
+            <col style="width: 7.5vw;">
+            <col style="width: 7.5vw;">
+            <col style="width: 7.5vw;">
+            <col style="width: 7.5vw;">
+        </colspan>
+        <thead>
+            <tr>
+                <th colspan="4">L-System Visualizer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- <td>Select system to visualize:</td> -->
+                <td colspan="4">
+                    <select id="systems" autocomplete="off" onchange="loadPreset($(this).children('option:selected').val())">
+                        <option value="" default selected hidden>Select a system to visualize</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Axiom:&nbsp;<input id="axiom" type="text" autocomplete="off" oninput="validateOutput(this)"></td>
+                <td colspan="2">Angle:&nbsp;<input id="angle" type="text" autocomplete="off" oninput="validateAngle(this)"></td>
+            </tr>
+            <tr id="rulesrow" style="background-color: green;">
+                <td colspan="4">
+                    <table id="headers">
+                        <colspan>
+                            <col style="width: 10%">
+                            <col style="width: 10%">
+                            <col style="width: 70%">
+                            <col style="width: 10%">
+                        </colspan>
+                        <thead>
+                            <tr>
+                                <th>%</th>
+                                <th>Input</th>
+                                <th>Output</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div>
+                        <table id="rules">
+                            <colspan>
+                                <col style="width: 10%">
+                                <col style="width: 10%">
+                                <col style="width: 70%">
+                                <col style="width: 10%">
+                            </colspan>
+                            <tbody>
+                                <tr class="rule">
+                                    <td><input type="number" min="0" max="100" autocomplete="off"
+                                            oninput="validatePercent(this)"></td>
+                                    <td><input type="text" maxlength="1" autocomplete="off"
+                                            oninput="validateInput(this)"></td>
+                                    <td><input type="text" style="text-align: left; padding-left: 5px;"
+                                            autocomplete="off" oninput="validateOutput(this)"></td>
+                                    <td><button onClick="removeRuleRow(this)">&#65293;</button></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><button onClick="addRuleRow()">&#65291;</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="iterations" colspan="4">
+                    <button class="curved-left"
+                        onClick="$('#iterations').text((iterations > 1) ? --iterations : iterations);">&#65293;</button>
+                    Iterations:&nbsp;
+                    <span id="iterations">1</span>
+                    <button class="curved-right" onClick="$('#iterations').text(++iterations);">&#65291;</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"><button class="curved-left curved-right" id="draw" onClick="drawSystem()">Draw</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <section id="content"></section>
+</body>
+
+</html>
